@@ -26,6 +26,7 @@ body {
     flex: 0.5;
     position: relative;
     transition: flex 0.5s ease-in;
+    cursor: pointer;
 }
 
 .active {
@@ -45,5 +46,12 @@ body {
 .panel.active h3 {
     opacity: 1;
     transition: opacity 0.5s ease-in 0.3s;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        height: 90vh;
+    }
 }
 
