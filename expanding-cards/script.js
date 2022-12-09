@@ -7,7 +7,6 @@ container.addEventListener('click', (event) => {
             });
             event.target.classList.add('active');
         }
-
     });
 
 

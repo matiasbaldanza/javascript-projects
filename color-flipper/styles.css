@@ -1,0 +1,64 @@
+/* GLOBAL STYLES */
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+/* TODO: remove duplication of flexbox properties */
+
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;            
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease-in;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    padding: 1rem 1.5rem;
+    background: black;
+    color: white;
+    border-radius: 1rem;
+    letter-spacing: 0.25rem;
+    text-align: center;
+}
+
+h2 span {
+    color: white;
+}
+
+.btn { 
+    font-family: inherit;
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.25rem;;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    transition: color 0.3s linear;
+
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: white;
+    background-color: black;
+}
