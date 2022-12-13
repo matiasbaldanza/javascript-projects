@@ -165,7 +165,7 @@ function changeColor() {
     const newColorName = colorsNames.find(name => colors[name] === newColor)
 
     main.style.backgroundColor = newColor;
-    colorTag.textContent = `${newColorName}\u2007(${newColor})`; /* \u2007 === &nbsp; */
+    colorTag.textContent = `${newColorName} (${newColor})`; 
     colorTag.style.color = newColor; 
 
 }

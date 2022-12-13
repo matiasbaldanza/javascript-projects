@@ -43,6 +43,7 @@ h2 {
 
 h2 span {
     color: white;
+    white-space: nowrap;
 }
 
 .btn { 
