@@ -4,18 +4,16 @@ const main = document.querySelector("main")
 const colorTag = document.getElementById('color-tag');
 
 btn.addEventListener( 'click', () => {
-    let oldColorNumber = colors.indexOf(main.style.backgroundColor);
-    let newColorNumber = getRandomNumber();
+    const oldColor = main.style.backgroundColor;
+    let newColor = colors[getRandomNumber()];
 
-    while (newColorNumber === oldColorNumber) {
-        console.log(`color repetido, viejo: ${oldColorNumber}, nuevo: ${newColorNumber}`)
-        newColorNumber = getRandomNumber();
+    while (newColor === oldColor) {
+        newColor = colors[getRandomNumber()];
     }
-
-    main.style.backgroundColor = colors[newColorNumber];
-    colorTag.textContent = colors[newColorNumber];
-    colorTag.style.color = colors[newColorNumber];
-    console.log
+    
+    main.style.backgroundColor = newColor;
+    colorTag.textContent = newColor;
+    colorTag.style.color = newColor; 
 });
 
 
