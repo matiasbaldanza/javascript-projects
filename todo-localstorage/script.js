@@ -15,6 +15,8 @@ window.addEventListener('load', () => {
             createdAt: new Date().getTime()
         }
 
+        // TODO: add validation before storing new todoItem
+
         // store new todo
         todos = [...todos, newTodo];
 
@@ -29,7 +31,9 @@ window.addEventListener('load', () => {
 
     function DisplayTodoList () {
         const todoList = document.querySelector('#todo-list');
-        todoList.innerHTML = "";
+
+        // delete list before displaying it from localStorage
+        todoList.replaceChildren();
         
         todos.forEach(todo => {
             // create the todo item
@@ -67,6 +71,11 @@ window.addEventListener('load', () => {
             // show todoItem 
             todoList.append(todoItem);
 
+            deleteButton.addEventListener('click', (e) => {
+                todos = todos.filter(item => item != todo);
+                localStorage.setItem('todos', JSON.stringify(todos));
+                DisplayTodoList();
+            })
 
         })
         
