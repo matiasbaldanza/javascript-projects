@@ -45,11 +45,12 @@ window.addEventListener('load', () => {
             // done checkbox
             const inputDone = document.createElement('input');
             inputDone.type = 'checkbox';
-            inputDone.value = todo.done;
+            inputDone.checked = todo.done;
 
             // input with text content
             const inputContent = document.createElement('input');
             inputContent.type = 'text';
+            inputContent.setAttribute('readonly', true);
             inputContent.value = todo.content;
 
             // actions-toolbar
@@ -70,6 +71,35 @@ window.addEventListener('load', () => {
 
             // show todoItem 
             todoList.append(todoItem);
+
+            if (todo.done) {
+                todoItem.classList.add('done');
+            } 
+
+            inputDone.addEventListener('change', (e) => {
+                todo.done = e.target.checked;
+                localStorage.setItem('todos', JSON.stringify(todos));
+
+                if (todo.done) {
+                    todoItem.classList.add('done');
+                } else {
+                    todoItem.classList.remove('done');
+                }
+            })
+
+
+
+            editButton.addEventListener('click', (e) => {
+                inputContent.removeAttribute('readonly');
+                inputContent.focus();
+                
+                inputContent.addEventListener('blur', (e) => {
+                    inputContent.setAttribute('readonly', true);
+                    todo.content = e.target.value;
+                    localStorage.setItem('todos', JSON.stringify(todos));
+                    DisplayTodoList();
+                })
+            })
 
             deleteButton.addEventListener('click', (e) => {
                 todos = todos.filter(item => item != todo);
