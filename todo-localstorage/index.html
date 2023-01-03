@@ -10,6 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do List using LocalStorage V1.0</title>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <main>
@@ -27,29 +29,15 @@
             </form>
         </section>
 
-        <section class="todo-list">
+        <section class="todo-list-section">
             <h3>TO-DO</h3>
             <div id="todo-list">
-                <div class="todo-item">
-                    <input type="checkbox" />
-                    <input value="Hacer el HTML" readonly />
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div>
-                <div class="todo-item">
-                    <input type="checkbox" />
-                    <input value="Hacer el CSS" readonly />
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div>
-                <div class="todo-item">
-                    <input type="checkbox" />
-                    <input value="Hacer el código JS" readonly />
-                    <button class="edit-button">Edit</button>
-                    <button class="delete-button">Delete</button>
-                </div>
+                <!-- Filled using LocalStorage -->
             </div>
         </section>
     </main>
+
+    <!-- IMPORT JS -->
+    <script src="script.js"></script>
 </body>
 </html>
