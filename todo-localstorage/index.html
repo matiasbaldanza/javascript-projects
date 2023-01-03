@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        Based on a tutorial by Tyler Potts
+        Source: https://www.youtube.com/watch?v=6eFwtaZf6zc
+        Original repo: https://github.com/TylerPottsDev/yt-js-todo-2022
+     -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-do List using LocalStorage V1.0</title>
+</head>
+<body>
+    <main>
+        <h1>To-do list</h1>
+
+        <section class="add-todo">
+            <form id="add-todo-form">
+                <label for="content">What do you need to do?</label>
+                <input 
+                    type="text"
+                    placeholder="e.g. Do the thing"
+                    name="content"
+                    id="content">
+                <input type="submit" value="Add to-do" />
+            </form>
+        </section>
+
+        <section class="todo-list">
+            <h3>TO-DO</h3>
+            <div id="todo-list">
+                <div class="todo-item">
+                    <input type="checkbox" />
+                    <input value="Hacer el HTML" readonly />
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" />
+                    <input value="Hacer el CSS" readonly />
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" />
+                    <input value="Hacer el código JS" readonly />
+                    <button class="edit-button">Edit</button>
+                    <button class="delete-button">Delete</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

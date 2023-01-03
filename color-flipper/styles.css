@@ -2,6 +2,11 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap");
 
+:root {
+    --label-bg: black;
+    --label-cl: white;
+}
+
 body {
     display: flex;
     align-items: center;
@@ -29,13 +34,14 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 90vw;
 }
 
 h2 {
     font-size: 2.5rem;
     padding: 1rem 1.5rem;
-    background: black;
-    color: white;
+    background: var(--label-bg);
+    color: var(--label-cl);
     border-radius: 1rem;
     letter-spacing: 0.25rem;
     text-align: center;

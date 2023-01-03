@@ -170,6 +170,8 @@ function changeColor() {
 
 }
 
+/* TODO: when the color is dark, there is little contrast with the background */
+
 btn.addEventListener( 'click', changeColor );
 
 function getRandomColor() {
