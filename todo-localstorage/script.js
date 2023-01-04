@@ -1,9 +1,19 @@
+/* 
+    TODO: remove code repetition  
+    TODO: add validation
+    TODO: style the list
+    TODO: Edit should change the an EDIT button into SAVE 
+    TODO: use modules!
+*/
+
+const localStorageKeyName = 'todos-1324-9876'
+
 window.addEventListener('load', () => {
     /* read localStorage */
     const todoFormElement = document.querySelector('#add-todo-form');
     
     /* Retrieve list from LocalStorage and display it */
-    todos = JSON.parse(localStorage.getItem('todos')) || [];
+    todos = JSON.parse(localStorage.getItem(localStorageKeyName)) || [];
     DisplayTodoList();
     
     todoFormElement.addEventListener('submit', e => {
@@ -21,7 +31,7 @@ window.addEventListener('load', () => {
         todos = [...todos, newTodo];
 
         // update LocalStorage
-        localStorage.setItem('todos', JSON.stringify(todos));
+        localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
 
         // Reset the form
         e.target.reset();
@@ -78,7 +88,7 @@ window.addEventListener('load', () => {
 
             inputDone.addEventListener('change', (e) => {
                 todo.done = e.target.checked;
-                localStorage.setItem('todos', JSON.stringify(todos));
+                localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
 
                 todoItem.classList.toggle('done');
                 
@@ -98,14 +108,14 @@ window.addEventListener('load', () => {
                 inputContent.addEventListener('blur', (e) => {
                     inputContent.setAttribute('readonly', true);
                     todo.content = e.target.value;
-                    localStorage.setItem('todos', JSON.stringify(todos));
+                    localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
                     DisplayTodoList();
                 })
             })
 
             deleteButton.addEventListener('click', (e) => {
                 todos = todos.filter(item => item != todo);
-                localStorage.setItem('todos', JSON.stringify(todos));
+                localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
                 DisplayTodoList();
             })
 
