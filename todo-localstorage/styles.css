@@ -2,7 +2,7 @@
     display: inline-block;
 }
 
-#todo-list input:not([type="checkbox"]) {
+#todo-list .todo-content {
     appearance: none;
     border: none;
     outline: none;

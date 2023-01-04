@@ -31,13 +31,17 @@ window.addEventListener('load', () => {
         todos = [...todos, newTodo];
 
         // update LocalStorage
-        localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
+        updateLocalStorage(localStorageKeyName, todos);
 
         // Reset the form
         e.target.reset();
 
         DisplayTodoList();
     })
+
+    function updateLocalStorage(keyName, data) {
+        localStorage.setItem(keyName, JSON.stringify(data));
+    }
 
     function DisplayTodoList () {
         const todoList = document.querySelector('#todo-list');
@@ -46,41 +50,32 @@ window.addEventListener('load', () => {
         todoList.replaceChildren();
         
         todos.forEach(todo => {
-            // create the todo item
-            const todoItem = document.createElement('div');
-            todoItem.classList.add('todo-item')
+            const todoItem = createTodoItem(todo);
+
+            // show todoItem 
+            todoList.append(todoItem);
+        })
+
+        function createTodoItem(todo) {
+            const todoItem = createElementWithClass('div', 'todo-item');
     
             // create the todo item's children elements
             
             // done checkbox
-            const inputDone = document.createElement('input');
+            const inputDone = createElementWithClass('input', 'checkbox');
             inputDone.type = 'checkbox';
             inputDone.checked = todo.done;
 
             // input with text content
-            const inputContent = document.createElement('input');
+            const inputContent = createElementWithClass('input', 'todo-content');
             inputContent.type = 'text';
             inputContent.setAttribute('readonly', true);
             inputContent.value = todo.content;
 
-            // actions-toolbar
-            const itemActions = document.createElement('div');
-            itemActions.classList.add('item-actions');
-            const editButton = document.createElement('button');
-            editButton.classList.add('edit-button');
-            editButton.textContent = 'Edit';
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.classList.add('delete-button');
-
-            // assemble actions-toolbar
-            itemActions.append(editButton, deleteButton);
-
+            const itemActions = createActionsToolbar();
+            
             // assemble todoItem
             todoItem.append(inputDone, inputContent, itemActions);
-
-            // show todoItem 
-            todoList.append(todoItem);
 
             if (todo.done) {
                 todoItem.classList.add('done');
@@ -88,18 +83,35 @@ window.addEventListener('load', () => {
 
             inputDone.addEventListener('change', (e) => {
                 todo.done = e.target.checked;
-                localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
+                updateLocalStorage(localStorageKeyName, todos);
 
                 todoItem.classList.toggle('done');
-                
-                /* if (todo.done) {
-                    todoItem.classList.add('done');
-                } else {
-                    todoItem.classList.remove('done');
-                } */
             })
 
+            return todoItem;
+        }
 
+        function createElementWithClass(elementName, className) {
+            const element = document.createElement(elementName);
+            element.classList.add(className);
+
+            return element;
+        }
+
+        function createActionsToolbar() {
+            const actionsToolbar = document.createElement('div');
+            actionsToolbar.classList.add('item-actions');
+
+            const editButton = document.createElement('button');
+            editButton.classList.add('edit-button');
+            editButton.textContent = 'Edit';
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.classList.add('delete-button');
+
+            // assemble actions-toolbar
+            actionsToolbar.append(editButton, deleteButton);
 
             editButton.addEventListener('click', (e) => {
                 inputContent.removeAttribute('readonly');
@@ -108,18 +120,19 @@ window.addEventListener('load', () => {
                 inputContent.addEventListener('blur', (e) => {
                     inputContent.setAttribute('readonly', true);
                     todo.content = e.target.value;
-                    localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
+                    updateLocalStorage(localStorageKeyName, todos);
                     DisplayTodoList();
                 })
             })
 
             deleteButton.addEventListener('click', (e) => {
                 todos = todos.filter(item => item != todo);
-                localStorage.setItem(localStorageKeyName, JSON.stringify(todos));
+                updateLocalStorage(localStorageKeyName, todos);
                 DisplayTodoList();
             })
 
-        })
+            return actionsToolbar;
+        }
         
 
     }
