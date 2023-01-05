@@ -1,14 +1,19 @@
 /* 
-    TODO: add validation
+    TODO: itemActions should only be visible on :hover
     TODO: style the list
+    TODO: add animations
     TODO: Edit should change the an EDIT button into SAVE 
     TODO: use modules!
 */
 
+import { applyAnimation } from "./imports/ui.js";
+
 const localStorageKeyName = 'todos-1324-9876'
+let todos = JSON.parse(localStorage.getItem(localStorageKeyName)) || [];
 
 // DOM elements
 const todoFormElement = document.querySelector('#add-todo-form');
+const inputElement = document.querySelector('#content');
 
 // Event listeners 
 todoFormElement.addEventListener('submit', addTodo);
@@ -24,6 +29,10 @@ function addTodo(e) {
     }
 
     // TODO: add validation before storing new todoItem
+    if (newTodo.content.trim() === "") {
+        applyAnimation(inputElement, "animation-error", 500);
+        return;
+    } 
 
     // store new todo
     todos = [...todos, newTodo];
@@ -34,14 +43,14 @@ function addTodo(e) {
     // Reset the form
     e.target.reset();
 
-    DisplayTodoList();
+    displayTodoList();
 }
 
 function updateLocalStorage(keyName, data) {
     localStorage.setItem(keyName, JSON.stringify(data));
 }
 
-function DisplayTodoList () {
+function displayTodoList () {
     const todoList = document.querySelector('#todo-list');
 
     // delete list before displaying it from localStorage
@@ -120,27 +129,20 @@ function createActionsToolbar(todo, editableContent) {
             editableContent.setAttribute('readonly', true);
             todo.content = e.target.value;
             updateLocalStorage(localStorageKeyName, todos);
-            DisplayTodoList();
+            displayTodoList();
         })
     })
 
     deleteButton.addEventListener('click', (e) => {
         todos = todos.filter(item => item != todo);
         updateLocalStorage(localStorageKeyName, todos);
-        DisplayTodoList();
+        displayTodoList();
     })
 
     return actionsToolbar;
 }
 
-function renderTodoList() {
-    /* Retrieve list from LocalStorage and display it */
-    todos = JSON.parse(localStorage.getItem(localStorageKeyName)) || [];
-    DisplayTodoList();
-    
-}
-
 // Initial render
-renderTodoList();
+displayTodoList();
 
 

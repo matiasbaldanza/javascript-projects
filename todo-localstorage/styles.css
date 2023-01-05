@@ -20,3 +20,11 @@
     text-decoration: line-through;
 }
 
+/* ANIMATIONS */
+
+.animation-error {
+    background: red;
+    color: white;
+    transition: 500ms ease-in;
+}
+
