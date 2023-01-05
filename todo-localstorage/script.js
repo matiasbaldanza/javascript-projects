@@ -1,9 +1,5 @@
 /* 
-    TODO: itemActions should only be visible on :hover
-    TODO: style the list
-    TODO: add animations
     TODO: Edit should change the an EDIT button into SAVE 
-    TODO: use modules!
 */
 
 import { applyAnimation } from "./imports/ui.js";

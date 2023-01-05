@@ -1,13 +1,111 @@
-.item-actions {
+/* CUSTOM PROPERTIES */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    --grey-transparent: rgba(0, 0, 0, .25);
+    --grey: #888;
+    --light: #EEE;
+    --primary: #39B5E0;
+    --danger: #ff5b57;
+
+    --border-thin: var(--grey) solid 0.5px;
+    --shadow: 0 1px 2px var(--grey-transparent);
+}
+
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#content {
+    appearance: none;
+    border: none;
+    border-bottom: var(--border-thin);
+    padding: 8px;
+    width: 100%;
+}
+
+input { 
+    font-size: 1rem;
+    background-color: inherit;
+}
+
+input[type="submit"] {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    background: var(--primary);
+    color: var(--light);
+    font-weight: 300;
+    font-size: 1.25rem;
+}
+
+input[type="submit"], button {
+    border-radius: 8px;
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+input[type="submit"]:active, button:active {
+    box-shadow: none;
+    transform: translate(0, 2px);
+}
+
+
+/* ELEMENTS */
+
+body {
+    background-color: var(--light);
+    padding: 25px 0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+label, h3 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     display: inline-block;
 }
+
+.item-actions {
+    display: inline-block;
+    margin-left: auto;
+    opacity: 0;                /* hidden by default, shown on hover */
+}
+
+.item-actions button {
+    padding: 8px;
+    margin-left: 8px;
+    color: var(--light);
+}
+
+.edit-button {
+    background-color: var(--primary);
+}
+
+.delete-button {
+    background-color: var(--danger);
+}
+
 
 #todo-list .todo-content {
     appearance: none;
     border: none;
     outline: none;
     cursor: initial;
-    font-size: 1em;
 }
 
 #todo-list input[type="checkbox"] {
@@ -16,7 +114,7 @@
 }
 
 .done input[type="text"]{
-    color: grey;
+    color: var(--grey);
     text-decoration: line-through;
 }
 
@@ -26,5 +124,29 @@
     background: red;
     color: white;
     transition: 500ms ease-in;
+}
+
+.todo-item:hover .item-actions {
+    opacity: 1;
+    transition: 0.5s;
+}
+
+.todo-item:hover {
+    box-shadow: var(--shadow);
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    border: var(--border-thin);
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    flex: 1 1 0%;
+    
+    padding: 0.25rem 0.5rem;
+    border-bottom: var(--border-thin);
 }
 

@@ -17,7 +17,7 @@
     <script defer src="script.js" type="module"></script>
 </head>
 <body>
-    <main>
+    <main class="container">
         <h1>To-do list</h1>
 
         <section class="add-todo">
@@ -27,16 +27,17 @@
                     type="text"
                     placeholder="e.g. Do the thing"
                     name="content"
-                    id="content">
+                    id="content"
+                    autocomplete="off"
+                    autofocus>
                 <input type="submit" value="Add to-do" />
             </form>
         </section>
 
         <section class="todo-list-section">
             <h3>TO-DOs</h3>
-            <div id="todo-list">
+            <div class="todo-list" id="todo-list">
                 <!-- Filled using LocalStorage -->
-                <p> KK </p>
             </div>
         </section>
     </main>
