@@ -1,7 +1,3 @@
-/* 
-    TODO: Edit should change the an EDIT button into SAVE 
-*/
-
 import { applyAnimation } from "./imports/ui.js";
 
 const localStorageKeyName = 'todos-1324-9876'
