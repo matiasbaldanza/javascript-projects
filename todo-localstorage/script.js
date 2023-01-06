@@ -121,20 +121,31 @@ function createActionsToolbar(todo, editableContent) {
         actionsToolbar.classList.add('visible');
         editableContent.removeAttribute('readonly');
         editableContent.focus();
-        
-        editableContent.addEventListener('blur', (e) => {
+
+        const saveButton = document.createElement('button');
+        saveButton.textContent = 'Save';
+        saveButton.classList.add('save-button');
+        editButton.parentNode.replaceChild(saveButton, editButton);
+
+        saveButton.addEventListener('click', saveItemChanges);
+        editableContent.addEventListener('blur', saveItemChanges);
+        editableContent.addEventListener('keypress', (e) => {
+            if (e.key === "Enter") editableContent.blur();
+        });
+
+        function saveItemChanges(e) {
             editableContent.setAttribute('readonly', true);
             todo.content = e.target.value;
             updateLocalStorage(localStorageKeyName, todos);
             displayTodoList();
-        })
-    })
+        }
+    });
 
     deleteButton.addEventListener('click', (e) => {
         todos = todos.filter(item => item != todo);
         updateLocalStorage(localStorageKeyName, todos);
         displayTodoList();
-    })
+    });
 
     return actionsToolbar;
 }
