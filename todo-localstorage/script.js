@@ -118,6 +118,7 @@ function createActionsToolbar(todo, editableContent) {
     actionsToolbar.append(editButton, deleteButton);
 
     editButton.addEventListener('click', (e) => {
+        actionsToolbar.classList.add('visible');
         editableContent.removeAttribute('readonly');
         editableContent.focus();
         

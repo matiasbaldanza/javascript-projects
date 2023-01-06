@@ -169,6 +169,10 @@ label, h3 {
     border-radius: var(--min-radius);
 }
 
+.visible {
+    opacity: 1 !important;
+}
+
 /* RESPONSIVE */
 
 @media (hover) {
