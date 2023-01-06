@@ -126,7 +126,8 @@ label, h3 {
 }
 
 .todo-content {
-    flex: 10 1 auto;
+    flex: 5 1 auto;   /* I don't know how, but this makes the input as wide as possible */
+    min-width: 0; 
 
 }
 
@@ -161,7 +162,8 @@ label, h3 {
 .todo-item {
     display: flex;
     align-items: center;
-    
+    overflow-x: hidden;
+
     padding: 0.25rem 0.5rem;
     height: var(--height-normal);
     background-color: var(--lighter);
