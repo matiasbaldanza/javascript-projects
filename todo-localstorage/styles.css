@@ -73,7 +73,7 @@ input[type="submit"]:active, button:active {
 
 body {
     background-color: var(--light);
-    padding: 25px 0;
+    padding: 25px;
 }
 
 .container {
@@ -93,10 +93,11 @@ label, h3 {
 }
 
 .item-actions {
-    display: inline-block;
     margin-left: auto;
-    opacity: 0;                /* hidden by default, shown on hover */
+    opacity: 1;                /* hidden by default, shown on hover */
     flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .item-actions button {
@@ -126,6 +127,7 @@ label, h3 {
 
 .todo-content {
     flex: 10 1 auto;
+
 }
 
 #todo-list input[type="checkbox"] {
@@ -144,11 +146,6 @@ label, h3 {
     background-color: var(--danger);
     color: var(--light);
     transition: 500ms ease-in;
-}
-
-.todo-item:hover .item-actions {
-    opacity: 1;
-    transition: 0.5s;
 }
 
 .todo-item:hover {
@@ -171,3 +168,15 @@ label, h3 {
     border-radius: var(--min-radius);
 }
 
+/* RESPONSIVE */
+
+@media (hover) {
+    .item-actions {
+        opacity: 0; 
+    }
+
+    .item-actions:hover {
+        opacity: 1;
+        transition: 0.5s;
+    }
+}
