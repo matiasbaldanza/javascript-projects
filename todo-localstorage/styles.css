@@ -162,7 +162,6 @@ label, h3 {
 .todo-item {
     display: flex;
     align-items: center;
-    overflow-x: hidden;
 
     padding: 0.25rem 0.5rem;
     height: var(--height-normal);
@@ -177,7 +176,7 @@ label, h3 {
         opacity: 0; 
     }
 
-    .item-actions:hover {
+    .todo-item:hover .item-actions {
         opacity: 1;
         transition: 0.5s;
     }
