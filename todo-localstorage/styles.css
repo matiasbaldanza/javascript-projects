@@ -9,6 +9,7 @@
     --lighter: rgba(255, 255, 255, .8);
     --primary: #39B5E0;
     --danger: #ff5b57;
+    --save: #10A19D;
 
     --border-thin: var(--grey) solid;
     --shadow: 0 1px 2px var(--grey-transparent);
@@ -110,7 +111,11 @@ label, h3 {
     background-color: var(--primary);
 }
 
-.edit-button:hover, .delete-button:hover {
+.save-button {
+    background-color: var(--save);
+}
+
+.edit-button:hover, .delete-button:hover, .save-button:hover {
     border-bottom: var(--border-thin);    
 }
 
