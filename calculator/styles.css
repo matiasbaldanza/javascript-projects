@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+
+}
+
+body { 
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #00AAFF, #00FF6C); 
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+}
+
+.calculator-grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: 120px repeat(5, 100px);
+}
+
+.calculator-grid > button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 2px solid white;
+    outline: none;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.display {
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, .75);
+    color: white;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+
+}
+
+.previous-operand {
+    color:rgba(255, 255, 255, .85);
+    font-size: 1.5rem;
+}
+
+.current-operand {
+    color: white;
+    font-size: 3rem;
+}
+
+.span-two {
+    grid-column: span 2;
+}
