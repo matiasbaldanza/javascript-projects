@@ -19,7 +19,7 @@ body {
     min-height: 100vh;
 
     grid-template-columns: repeat(4, 100px);
-    grid-template-rows: 120px repeat(5, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
 .calculator-grid > button {
@@ -39,13 +39,15 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    justify-content: space-around;
+    justify-content: space-between;
+    word-wrap: break-word;
+    word-break: break-all;
 
 }
 
 .previous-operand {
     color:rgba(255, 255, 255, .85);
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .current-operand {
