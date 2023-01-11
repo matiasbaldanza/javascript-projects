@@ -94,15 +94,13 @@ class Calculator {
         } else {
             this.previousOperandTextElement.innerText = '';
         }
-
-        console.log(`${this.previousOperand} ${this.operation} ${this.currentOperand}`)
     }
 
 } /* class Calculator */
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
-// event listeners
+// event listeners: buttons
 allClearButton.addEventListener('click', button => {
     calculator.allClear(); 
     calculator.updateDisplay();
@@ -131,4 +129,38 @@ equalsButton.addEventListener('click', () => {
     calculator.calculate();
     calculator.updateDisplay();
 })
+
+// event listeners: keyboard
+window.addEventListener('keyup', (e) => {
+    console.log(e.key);
+    switch (e.key) {
+        case 'Escape':
+            calculator.allClear(); 
+            break;
+        case 'Backspace':
+        case 'Delete':
+            calculator.deleteDigit();
+            break;
+        case '1': case '2': case '3': case '4': case '5': 
+        case '6': case '7': case '8': case '9': case '.': case '0':
+            calculator.appendDigit(e.key);
+            break;
+        case '/': 
+            calculator.selectOperation('÷');
+            break;
+        case '*': case '+': case '-': 
+            calculator.selectOperation(e.key);
+            break;
+        case '=':
+        case 'Enter':
+            calculator.calculate();
+            break;
+            default:
+                break
+        }
+        calculator.updateDisplay();
+        })
+
+
+
 
