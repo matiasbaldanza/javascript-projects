@@ -35,6 +35,11 @@ class Calculator {
         // if digit is zero, do not allow multiple initial zeroes
         if ( digit === '0' && this.currentOperand === '0' ) return;
 
+        // if digit is zero and a number is added, remove the zero
+        if ( this.currentOperand === '0' && digit !== '0' && digit != '.') {
+            this.currentOperand = '';
+        }
+
         // if digit is '.' and there are no prior digits, add a zero
         if ( digit === '.' && this.currentOperand === '' ) this.currentOperand = '0';
 
