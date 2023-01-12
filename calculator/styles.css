@@ -1,38 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
+    --color-blue: #00AAFF;
+    --color-green: #00FF6C;
+    --gradient-blue-green: linear-gradient(to right, #00AAFF, #00FF6C);
+    --color-display-bg: rgba(0, 0, 0, .75);
+    --color-display-1: rgba(255, 255, 255, 1);
+    --color-display-2: rgba(255, 255, 255, .75);
+}
 
+* {
+    box-sizing: border-box;
+    border: none;
 }
 
 body { 
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right, #00AAFF, #00FF6C); 
+    background: var(--gradient-blue-green); 
     font-family: "Roboto", sans-serif;
     font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .calculator-grid {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
 
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    gap: 5px;
 }
 
 .calculator-grid > button {
     cursor: pointer;
     font-size: 2rem;
-    border: 2px solid white;
     outline: none;
-    background-color: rgba(255, 255, 255, .75);
+    background-color: var(--color-display-2);
 }
 
 .display {
     grid-column: 1 / -1;
-    background-color: rgba(0, 0, 0, .75);
+    background-color: var(--color-display-bg);
     color: white;
     padding: 10px;
 
@@ -46,7 +59,7 @@ body {
 }
 
 .previous-operand {
-    color:rgba(255, 255, 255, .85);
+    color: var(--color-display-2);
     font-size: 2rem;
 }
 
