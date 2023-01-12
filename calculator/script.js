@@ -137,7 +137,6 @@ equalsButton.addEventListener('click', () => {
 
 // event listeners: keyboard
 window.addEventListener('keyup', (e) => {
-    console.log(e.key);
     switch (e.key) {
         case 'Escape':
             calculator.allClear(); 
@@ -145,25 +144,29 @@ window.addEventListener('keyup', (e) => {
         case 'Backspace':
         case 'Delete':
             calculator.deleteDigit();
+            calculator.updateDisplay();
             break;
         case '1': case '2': case '3': case '4': case '5': 
         case '6': case '7': case '8': case '9': case '.': case '0':
             calculator.appendDigit(e.key);
+            calculator.updateDisplay();
             break;
         case '/': 
             calculator.selectOperation('÷');
+            calculator.updateDisplay();
             break;
         case '*': case '+': case '-': 
             calculator.selectOperation(e.key);
+            calculator.updateDisplay();
             break;
         case '=':
         case 'Enter':
             calculator.calculate();
+            calculator.updateDisplay();
             break;
             default:
                 break
         }
-        calculator.updateDisplay();
         })
 
 
