@@ -99,6 +99,7 @@ class Calculator {
         } else {
             this.previousOperandTextElement.innerText = '';
         }
+        console.log("display updated")
     }
 
 } /* class Calculator */
@@ -144,30 +145,26 @@ window.addEventListener('keyup', (e) => {
         case 'Backspace':
         case 'Delete':
             calculator.deleteDigit();
-            calculator.updateDisplay();
             break;
         case '1': case '2': case '3': case '4': case '5': 
         case '6': case '7': case '8': case '9': case '.': case '0':
             calculator.appendDigit(e.key);
-            calculator.updateDisplay();
             break;
         case '/': 
             calculator.selectOperation('÷');
-            calculator.updateDisplay();
             break;
         case '*': case '+': case '-': 
             calculator.selectOperation(e.key);
-            calculator.updateDisplay();
             break;
         case '=':
         case 'Enter':
             calculator.calculate();
-            calculator.updateDisplay();
             break;
-            default:
-                break
-        }
-        })
+        default:
+            return;
+            }
+        calculator.updateDisplay();
+})
 
 
 
