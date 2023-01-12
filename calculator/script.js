@@ -99,7 +99,6 @@ class Calculator {
         } else {
             this.previousOperandTextElement.innerText = '';
         }
-        console.log("display updated")
     }
 
 } /* class Calculator */
