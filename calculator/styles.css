@@ -7,6 +7,8 @@
     --color-display-bg: rgba(0, 0, 0, .75);
     --color-display-1: rgba(255, 255, 255, 1);
     --color-display-2: rgba(255, 255, 255, .75);
+    --transition: 0.2s linear;
+    --animation-keypress: translate(2px, 2px);
 }
 
 * {
@@ -48,6 +50,16 @@ body {
     background-color: var(--color-display-2);
 }
 
+.calculator-grid > button:hover {
+    background-color: var(--color-display-1);
+    transition: background-color var(--transition);
+}
+
+.calculator-grid > button:active {
+    background-color: var(--color-display-1);
+    transform: var(--animation-keypress);
+}
+
 .display {
     grid-column: 1 / -1;
     background-color: var(--color-display-bg);
@@ -64,12 +76,12 @@ body {
 
 .previous-operand {
     color: var(--color-display-2);
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .current-operand {
     color: var(--color-display-1);
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 .span-two {
