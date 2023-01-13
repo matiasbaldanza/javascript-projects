@@ -93,15 +93,31 @@ class Calculator {
     }
 
     updateDisplay() {
-        this.currentOperandTextElement.innerText = this.currentOperand;
+        this.currentOperandTextElement.innerText = this.formatAsNumber(this.currentOperand);
         if (this.operation !== undefined) {
-            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation}`;
+            this.previousOperandTextElement.innerText = `${this.formatAsNumber(this.previousOperand)} ${this.operation}`;
         } else {
             this.previousOperandTextElement.innerText = '';
         }
     }
 
-} /* class Calculator */
+    formatAsNumber(numberAsString) {
+        if (numberAsString === '') return '0';
+        
+        let formattedString = '';
+        const integerDigits = parseFloat(numberAsString.split('.')[0]);
+        const decimalDigitsAsString = numberAsString.split('.')[1];
+
+        if (decimalDigitsAsString === undefined) {
+            formattedString = integerDigits.toLocaleString('en-us');
+        } else {
+            formattedString = `${integerDigits.toLocaleString('en-us')}.${decimalDigitsAsString}`;
+        }
+
+        return formattedString;
+    }
+
+} /* END class Calculator */
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
 
@@ -163,6 +179,8 @@ window.addEventListener('keyup', (e) => {
             return;
             }
         calculator.updateDisplay();
+
+        // IDEA: activate hover state of buttons using the e.key to filter which button to active
 })
 
 
