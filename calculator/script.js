@@ -1,13 +1,20 @@
 // DOM elements
     // 1. Display
+const displayBG = document.querySelector('.display');
 const previousOperandTextElement = document.querySelector('[data-previous-operand]');
 const currentOperandTextElement = document.querySelector('[data-current-operand]');
     //  2. Buttons
-const numberButtons = document.querySelectorAll('[data-number]');
-const operatorButtons = document.querySelectorAll('[data-operator]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const deleteButton = document.querySelector('[data-delete]');
+const numberButtons = document.querySelectorAll('[data-number]');
+const operatorButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.querySelector('[data-equals]');
+const allButtons = [allClearButton, 
+                    deleteButton, 
+                    ...numberButtons, 
+                    ...operatorButtons, 
+                    equalsButton];
+
 
 // constructor
 class Calculator {
@@ -22,6 +29,9 @@ class Calculator {
         this.previousOperand = '';
         this.currentOperand = '';
         this.operation = undefined;
+
+        displayBG.classList.add('flash');
+        setTimeout(() => { displayBG.classList.remove('flash') }, 200);
     }
 
     deleteDigit() {
@@ -117,6 +127,13 @@ class Calculator {
         return formattedString;
     }
 
+    animateButton(buttonValue) {
+        const buttonPressed = allButtons.find(button => button.innerText === buttonValue );
+
+        buttonPressed.classList.add('key-pressed');
+        setTimeout(() => { buttonPressed.classList.remove('key-pressed') }, 200);
+    }
+
 } /* END class Calculator */
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement);
@@ -156,32 +173,38 @@ window.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'Escape':
             calculator.allClear(); 
+            calculator.animateButton('AC');
             break;
         case 'Backspace':
         case 'Delete':
             calculator.deleteDigit();
+            calculator.animateButton('DEL');
             break;
         case '1': case '2': case '3': case '4': case '5': 
         case '6': case '7': case '8': case '9': case '.': case '0':
             calculator.appendDigit(e.key);
+            calculator.animateButton(e.key);
             break;
         case '/': 
             calculator.selectOperation('÷');
+            calculator.animateButton('÷');
             break;
         case '*': case '+': case '-': 
             calculator.selectOperation(e.key);
+            calculator.animateButton(e.key);
             break;
         case '=':
         case 'Enter':
             calculator.calculate();
+            calculator.animateButton('=');
             break;
         default:
             return;
-            }
+        }
         calculator.updateDisplay();
-
-        // IDEA: activate hover state of buttons using the e.key to filter which button to active
 })
+
+
 
 
 

@@ -48,14 +48,15 @@ body {
     font-size: 3rem;
     outline: none;
     background-color: var(--color-display-2);
+    transition: background-color var(--transition);
 }
 
 .calculator-grid > button:hover {
     background-color: var(--color-display-1);
-    transition: background-color var(--transition);
 }
 
-.calculator-grid > button:active {
+.calculator-grid > button:active, 
+.calculator-grid > button.key-pressed {
     background-color: var(--color-display-1);
     transform: var(--animation-keypress);
 }
@@ -74,14 +75,32 @@ body {
     word-break: break-all;
 }
 
+.flash {
+    animation: bright-flash 0.3s linear;
+}
+
+@keyframes bright-flash {
+    0% {
+        background-color: var(--color-display-bg);
+    }
+    50% {
+        background-color: var(--color-display-2);
+    }
+    100% {
+        background-color: var(--color-display-bg);
+    }
+}
+
 .previous-operand {
     color: var(--color-display-2);
     font-size: 2.5rem;
+    text-align: right;
 }
 
 .current-operand {
     color: var(--color-display-1);
     font-size: 5rem;
+    text-align: right;
 }
 
 .span-two {
