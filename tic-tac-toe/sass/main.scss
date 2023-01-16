@@ -1,0 +1,66 @@
+$color-border: black;
+$color-mark: $color-border;
+$color-mark-hover: gray;
+
+$cell-size: 100%;
+$mark-size: 60%;
+$mark-border: 1rem solid $color-mark;
+
+
+$border-width: 2px;
+
+* { 
+    box-sizing: border-box;
+}
+
+:root { 
+    font-size: 62.5%;
+}
+
+.board {
+    margin: 0 auto;
+    width: 80vw;
+    aspect-ratio: 1 / 1;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+
+    .cell {
+        height: $cell-size;
+        border: $border-width solid $color-border;
+        cursor: pointer;
+        position: relative;
+/*         display: flex;
+        justify-content: center;
+        align-items: center; */
+    }
+    
+    
+    & :nth-child(-n+3) {
+        border-top: none;
+    }
+    
+    & :nth-child(3n+1) {
+        border-left: none;
+    }
+    
+    & :nth-child(3n+3) {
+        border-right: none;
+    }
+    
+    & :nth-last-child(-n+3) {
+        border-bottom: none;
+    }
+}
+
+.circle::after{
+    content: '';
+    width: $mark-size;
+    height: $mark-size;
+    border-radius: 50%;
+    border: $mark-border;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
