@@ -1,4 +1,4 @@
-* {
+*, *::after, *::before {
   box-sizing: border-box;
 }
 
@@ -15,12 +15,9 @@
 }
 .board .cell {
   height: 100%;
-  border: 2px solid black;
+  border: 0.5rem solid black;
   cursor: pointer;
   position: relative;
-  /*         display: flex;
-          justify-content: center;
-          align-items: center; */
 }
 .board :nth-child(-n+3) {
   border-top: none;
@@ -37,14 +34,33 @@
 
 .circle::after {
   content: "";
-  width: 60%;
-  height: 60%;
+  width: 70%;
+  height: 70%;
   border-radius: 50%;
   border: 1rem solid black;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.cross::after,
+.cross::before {
+  content: "";
+  width: 0;
+  height: 87.5%;
+  border-left: 1rem solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.cross::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cross::before {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /*# sourceMappingURL=styles.css.map */

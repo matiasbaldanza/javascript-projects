@@ -1,15 +1,18 @@
+// TODO: Change marks from position:absolute to flex positioning
+//       Hint: the layout shift was due to box-sizing not being
+//       applied to ::after and ::before
+
 $color-border: black;
 $color-mark: $color-border;
 $color-mark-hover: gray;
 
 $cell-size: 100%;
-$mark-size: 60%;
+$mark-size: 70%;
 $mark-border: 1rem solid $color-mark;
 
+$border-width: 0.5rem;
 
-$border-width: 2px;
-
-* { 
+*, *::after, *::before { 
     box-sizing: border-box;
 }
 
@@ -29,11 +32,7 @@ $border-width: 2px;
         border: $border-width solid $color-border;
         cursor: pointer;
         position: relative;
-/*         display: flex;
-        justify-content: center;
-        align-items: center; */
     }
-    
     
     & :nth-child(-n+3) {
         border-top: none;
@@ -52,7 +51,7 @@ $border-width: 2px;
     }
 }
 
-.circle::after{
+.circle::after {
     content: '';
     width: $mark-size;
     height: $mark-size;
@@ -63,4 +62,24 @@ $border-width: 2px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.cross::after, 
+.cross::before {
+    content: '';
+    width: 0;
+    height: calc($mark-size * 1.25);
+    border-left: $mark-border;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.cross::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cross::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
