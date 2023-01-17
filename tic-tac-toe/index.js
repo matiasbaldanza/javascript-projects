@@ -29,6 +29,15 @@ boardElement.addEventListener( "click", handleClick );
 
 function startGame() {
     setBoardHover(crossTurn);
+    crossTurn = true;
+    clearBoard();
+}
+
+function clearBoard() {
+    cellElements.forEach(cell => {
+        cell.classList.remove(crossClass);
+        cell.classList.remove(circleClass);
+    })
 }
 
 function setBoardHover(crossTurn) {
@@ -53,11 +62,13 @@ function handleClick(e) {
 
     if (currentMarkWins(currentMark)) {
         alert(`WINS: ${currentMark}`);
+        startGame();
         return;
     } 
     
     if (boardIsFull(currentMark)) {
         alert(`It's a DRAW!`);
+        startGame();
         return;
     } 
     
