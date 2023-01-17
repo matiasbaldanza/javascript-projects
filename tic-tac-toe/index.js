@@ -19,11 +19,27 @@ const winningCombinations = [
     [2, 4, 6]
 ];
 
+startGame();
+
 
 /* EVENT LISTENERS */
 boardElement.addEventListener( "click", handleClick );
 
 /* GAME FUNCTIONS */
+
+function startGame() {
+    setBoardHover(crossTurn);
+}
+
+function setBoardHover(crossTurn) {
+    crossTurn ?
+        boardElement.classList.replace('circle-plays', 'cross-plays') :
+        boardElement.classList.replace('cross-plays', 'circle-plays');
+}
+
+function clearBoardHover() {
+    boardElement.classList.remove('cross-plays')
+}
 
 function handleClick(e) {
     const cell = e.target;
@@ -46,6 +62,7 @@ function handleClick(e) {
     } 
     
     swapTurns();
+    setBoardHover(crossTurn);
 }
 
 function placeMark(cell, markToAdd) {

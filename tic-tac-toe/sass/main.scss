@@ -9,6 +9,8 @@ $color-mark-hover: gray;
 $cell-size: 100%;
 $mark-size: 70%;
 $mark-border: 1rem solid $color-mark;
+$mark-border-hover: 1rem solid $color-mark-hover;
+
 
 $border-width: 0.5rem;
 
@@ -27,11 +29,12 @@ $border-width: 0.5rem;
     display: grid;
     grid-template-columns: repeat(3, auto);
 
-    .cell {
+    & .cell {
         height: $cell-size;
         border: $border-width solid $color-border;
         cursor: pointer;
         position: relative;
+
     }
     
     & :nth-child(-n+3) {
@@ -51,7 +54,8 @@ $border-width: 0.5rem;
     }
 }
 
-.circle::after {
+.circle::after,
+.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
     content: '';
     width: $mark-size;
     height: $mark-size;
@@ -64,8 +68,14 @@ $border-width: 0.5rem;
     transform: translate(-50%, -50%);
 }
 
+.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
+    border: $mark-border-hover;
+}
+
 .cross::after, 
-.cross::before {
+.cross::before,
+.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
     content: '';
     width: 0;
     height: calc($mark-size * 1.25);
@@ -76,10 +86,17 @@ $border-width: 0.5rem;
     left: 50%;
 }
 
-.cross::after {
+.cross::after,
+.board.cross-plays .cell:not(.cross):not(.circle):hover::after {
     transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.cross::before {
+.cross::before,
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
+    border-left: $mark-border-hover;
 }
