@@ -1,6 +1,10 @@
 /* DOM elements */
 const boardElement = document.querySelector('[board]');
 const cellElements = document.querySelectorAll('[cell]');
+const dialogElement = document.querySelector('dialog');
+const modalMessageElement = document.querySelector('[winner-message]');
+
+console.log(dialogElement)
 
 /* GLOBALS */
 let crossTurn = true;     // Initial turn for the CROSS
@@ -61,13 +65,13 @@ function handleClick(e) {
     placeMark(cell, currentMark);
 
     if (currentMarkWins(currentMark)) {
-        alert(`WINS: ${currentMark}`);
+        showWinner(currentMark);
         startGame();
         return;
     } 
     
     if (boardIsFull(currentMark)) {
-        alert(`It's a DRAW!`);
+        showModal(`It's a DRAW!`);
         startGame();
         return;
     } 
@@ -102,6 +106,15 @@ function boardIsFull() {
         return cell.classList.contains(crossClass) ||
         cell.classList.contains(circleClass); 
     });
+}
+
+function showWinner(currentMark) {  
+    showModal(`${currentMark} wins!`);
+}
+
+function showModal(message) {
+    modalMessageElement.textContent = message;
+    dialogElement.showModal();
 }
 
 
