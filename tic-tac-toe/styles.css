@@ -1,21 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Concert+One&display=swap");
 *, *::after, *::before {
   box-sizing: border-box;
 }
 
 :root {
   font-size: 62.5%;
+  font-family: "Concert One", sans-serif;
+}
+
+body {
+  background-color: #FF78F0;
+  padding: 4rem;
+}
+
+h1 {
+  font-size: 7rem;
+  color: #39B5E0;
+  margin: 0;
+  text-shadow: 0px 7px 0px #F5EA5A;
+}
+
+button {
+  font-size: 3rem;
+  font-family: inherit;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  border: none;
+  color: white;
+  background-color: #A31ACB;
+  box-shadow: 0px 5px 0px 0px #510d65;
+}
+
+button:active {
+  transform: translatey(5px);
+  box-shadow: none;
+}
+
+.container {
+  padding: 2rem;
+  border-radius: 2rem;
+  background-color: white;
+  width: 80vw;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  box-shadow: 0px 2rem 0px -5px #A31ACB;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+.container dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  text-shadow: 0px 4px 0px #A31ACB;
+  width: 80%;
+  padding: 2rem;
+  background: #FF78F0;
+  border-radius: 1rem;
+  border-width: 0px;
+}
+.container nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.container nav .score {
+  font-size: 3rem;
+}
+.container nav .score-crosses {
+  color: #39B5E0;
+}
+.container nav .score-circles {
+  color: #FF78F0;
 }
 
 .board {
   margin: 0 auto;
-  width: 80vw;
+  width: 90%;
   aspect-ratio: 1/1;
   display: grid;
   grid-template-columns: repeat(3, auto);
 }
 .board .cell {
   height: 100%;
-  border: 0.5rem solid black;
+  border: 0.5rem solid #A31ACB;
   cursor: pointer;
   position: relative;
 }
@@ -38,7 +118,7 @@
   width: 70%;
   height: 70%;
   border-radius: 50%;
-  border: 1rem solid black;
+  border: 1rem solid #FF78F0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -46,7 +126,7 @@
 }
 
 .board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-  border: 1rem solid gray;
+  border: 1rem solid #B0B0B0;
 }
 
 .cross::after,
@@ -56,7 +136,7 @@
   content: "";
   width: 0;
   height: 87.5%;
-  border-left: 1rem solid black;
+  border-left: 1rem solid #39B5E0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -74,7 +154,7 @@
 
 .board.cross-plays .cell:not(.cross):not(.circle):hover::after,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-  border-left: 1rem solid gray;
+  border-left: 1rem solid #B0B0B0;
 }
 
 /*# sourceMappingURL=styles.css.map */

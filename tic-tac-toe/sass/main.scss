@@ -1,18 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
+
 // TODO: Change marks from position:absolute to flex positioning
 //       Hint: the layout shift was due to box-sizing not being
 //       applied to ::after and ::before
 
-$color-border: black;
-$color-mark: $color-border;
-$color-mark-hover: gray;
+$color-primary: #39B5E0;
+$color-secondary: #A31ACB;
+$color-secondary-darker: #510d65;
+$color-secondary-lighter: #FF78F0;
+$color-contrast: #F5EA5A;
+
+$color-border: $color-secondary;
+$color-cross: $color-primary;
+$color-circle: $color-secondary-lighter;
+$color-mark-hover: #B0B0B0;
 
 $cell-size: 100%;
 $mark-size: 70%;
-$mark-border: 1rem solid $color-mark;
+$mark-border-cross: 1rem solid $color-cross;
+$mark-border-circle: 1rem solid $color-circle;
 $mark-border-hover: 1rem solid $color-mark-hover;
 
-
 $border-width: 0.5rem;
+
+$corner-elements: 1rem;
+$shadow-button: 0px 5px 0px 0px $color-secondary-darker;
+$shadow-text: 0px 4px 0px $color-secondary;
+$shadow-text-h1: 0px 7px 0px $color-contrast;
+
+$xl-text: 7rem;
+$lg-text: 4rem;
+$md-text: 3rem;
+
+// RESET
 
 *, *::after, *::before { 
     box-sizing: border-box;
@@ -20,11 +40,104 @@ $border-width: 0.5rem;
 
 :root { 
     font-size: 62.5%;
+    font-family: 'Concert One', sans-serif;
 }
+
+body {
+    background-color: $color-secondary-lighter;
+    padding: 4rem;
+}
+
+h1 {
+    font-size: $xl-text;
+    color: $color-primary;
+    margin: 0;
+    text-shadow: $shadow-text-h1;
+}
+
+button {
+    font-size: $md-text;
+    font-family: inherit;
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+    border-radius: $corner-elements;
+    border: none;
+    color: white;
+    background-color: $color-secondary;
+    box-shadow: $shadow-button;
+}
+
+button:active {
+    transform: translatey(5px);
+    box-shadow: none;
+}
+
+.container {
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: white;
+    width: 80vw;
+    max-width: 800px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
+
+    box-shadow: 0px 2rem 0px -5px $color-secondary;
+}
+
+// INTERFACE
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+
+    & dialog {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        color: white;
+        font-size: $lg-text;
+        text-shadow: $shadow-text;
+        
+        width: 80%;
+        padding: 2rem;
+        background: $color-secondary-lighter;
+        border-radius: $corner-elements;
+        border-width: 0px;
+    }
+
+    & nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: nowrap;
+        
+        & .score {
+            font-size: $md-text;
+        }
+
+        & .score-crosses {
+            color: $color-cross;
+        }
+
+        & .score-circles {
+            color: $color-circle;
+        }
+
+    }
+}
+
+// GAME ASSETS
 
 .board {
     margin: 0 auto;
-    width: 80vw;
+    width: 90%;
     aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat(3, auto);
@@ -60,7 +173,7 @@ $border-width: 0.5rem;
     width: $mark-size;
     height: $mark-size;
     border-radius: 50%;
-    border: $mark-border;
+    border: $mark-border-circle;
     
     position: absolute;
     top: 50%;
@@ -79,7 +192,7 @@ $border-width: 0.5rem;
     content: '';
     width: 0;
     height: calc($mark-size * 1.25);
-    border-left: $mark-border;
+    border-left: $mark-border-cross;
 
     position: absolute;
     top: 50%;

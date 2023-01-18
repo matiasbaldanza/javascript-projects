@@ -10,17 +10,34 @@
     <script src="index.js" type="module"></script>
 </head>
 <body>
-    <h1>Tic-Tac-Toe</h1>
-    <div board class="board cross-plays">
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-        <div cell class="cell"></div>
-    </div>
+    <main class="container">
+        <h1>Tic-Tac-Toe</h1>
+        <div board class="board cross-plays">
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+            <div cell class="cell"></div>
+        </div>
+        <dialog>
+            The <span winner>CROSSES</span> win!
+            <form method="dialog">
+                <button>OK</button>
+            </form>
+        </dialog>
+        <nav>
+            <div class="score score-crosses">
+                <span>Crosses: </span><span crosses-score>0</span>
+            </div>
+            <button>RESET</button>
+            <div  class="score score-circles">
+                <span>Circles: </span><span circles-score>0</span>
+            </div>
+        </nav>
+    </main>
 </body>
 </html>
