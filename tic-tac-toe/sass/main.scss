@@ -9,7 +9,6 @@
 // TODO: center modal relatve to board
 // TODO: add hover state with shadow to marks (I TRIED BUT COULN'T)
 
-
 $color-primary: #39B5E0;
 $color-secondary: #A31ACB;
 $color-secondary-darker: #510d65;
@@ -112,10 +111,13 @@ dialog {
     background: $color-secondary-lighter;
     border-radius: $corner-elements;
     border-width: 0px;
+
+    box-shadow: 0px 2rem 0px calc($lower-height * -1) $color-secondary;
+
 }
 
 dialog::backdrop {
-    background-color: rgb(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px) grayscale(50%);
 }
 
 .container {
