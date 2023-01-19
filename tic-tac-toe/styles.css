@@ -52,9 +52,7 @@ button:active {
   text-align: center;
 }
 
-.container dialog {
-  margin: auto;
-  position: relative;
+dialog {
   color: white;
   font-size: 4rem;
   text-shadow: 0px 4px 0px #A31ACB;
@@ -63,20 +61,21 @@ button:active {
   border-radius: 1rem;
   border-width: 0px;
 }
-.container nav {
+
+.container .scores {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
 }
-.container nav .score {
+.container .scores .score {
   font-size: 3rem;
 }
-.container nav .score-crosses {
+.container .scores .score-crosses {
   color: #39B5E0;
 }
-.container nav .score-circles {
+.container .scores .score-circles {
   color: #FF78F0;
 }
 

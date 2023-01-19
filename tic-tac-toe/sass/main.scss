@@ -91,23 +91,20 @@ button:active {
 
 // INTERFACE
 
+dialog {
+    color: white;
+    font-size: $lg-text;
+    text-shadow: $shadow-text;
+    
+    padding: 2rem;
+    background: $color-secondary-lighter;
+    border-radius: $corner-elements;
+    border-width: 0px;
+}
+
 .container {
 
-    dialog {
-        margin: auto;
-        position: relative;
-        
-        color: white;
-        font-size: $lg-text;
-        text-shadow: $shadow-text;
-        
-        padding: 2rem;
-        background: $color-secondary-lighter;
-        border-radius: $corner-elements;
-        border-width: 0px;
-    }
-
-    & nav {
+    & .scores {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
