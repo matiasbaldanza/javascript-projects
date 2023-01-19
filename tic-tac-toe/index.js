@@ -4,6 +4,10 @@ const cellElements = document.querySelectorAll('[cell]');
 const dialogElement = document.querySelector('dialog');
 const modalMessageElement = document.querySelector('[winner-message]');
 
+const crossesScoreElement = document.querySelector('[crosses-score]');
+const circlesScoreElement = document.querySelector('[circles-score]');
+const resetButton = document.querySelector('[reset-btn]');
+
 /* GLOBALS */
 let crossTurn = true;     // Initial turn for the CROSS
 const crossClass = 'cross';
@@ -20,13 +24,21 @@ const winningCombinations = [
     [0, 4, 8],  // diagonal wins
     [2, 4, 6]
 ];
+let crossesCumulativeScore = 0;
+let circlesCumulativeScore = 0;
 
 startGame();
 
 
 /* EVENT LISTENERS */
 boardElement.addEventListener( "click", handleClick );
-dialogElement.addEventListener("close", resetGame);
+
+dialogElement.addEventListener("close", () => {
+    resetGame(); 
+    updateScoreOnBoard();   
+});
+
+resetButton.addEventListener( "click", resetCumulativeScores );
 
 /* GAME FUNCTIONS */
 
@@ -53,6 +65,20 @@ function clearBoardHover() {
     boardElement.classList.remove('cross-plays')
 }
 
+function updateScoreOnBoard() {
+    if (crossesScoreElement.textContent !== crossesCumulativeScore) 
+        crossesScoreElement.textContent = crossesCumulativeScore;
+    
+    if (circlesScoreElement.textContent !== circlesCumulativeScore)
+        circlesScoreElement.textContent = circlesCumulativeScore;
+}
+
+function resetCumulativeScores() {
+    crossesCumulativeScore = 0;
+    circlesCumulativeScore = 0;
+    updateScoreOnBoard();
+}
+
 function handleClick(e) {
     const cell = e.target;
     const currentMark = crossTurn ? crossClass : circleClass;
@@ -64,6 +90,7 @@ function handleClick(e) {
     placeMark(cell, currentMark);
 
     if (currentMarkWins(currentMark)) {
+        incrementScore(currentMark);
         showWinner(currentMark);
         return;
     } 
@@ -83,6 +110,14 @@ function placeMark(cell, markToAdd) {
 
 function swapTurns() {
     crossTurn = !crossTurn;
+}
+
+function incrementScore(winner) {
+    if ( winner === crossClass ) {
+        crossesCumulativeScore++;
+    } else {
+        circlesCumulativeScore++;
+    }
 }
 
 function currentMarkWins(currentMark) {
