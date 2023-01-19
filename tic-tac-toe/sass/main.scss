@@ -6,7 +6,6 @@
 // TODO: fix vertical resizing
 // TODO: fix zoom resizing
 // TODO: fix text resizing
-// TODO: center modal relatve to board
 // TODO: add hover state with shadow to marks (I TRIED BUT COULN'T)
 
 $color-primary: #39B5E0;
@@ -57,6 +56,11 @@ $md-text: 3rem;
 body {
     background-color: $color-secondary-lighter;
     padding: 4rem;
+    min-height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h1 {
@@ -113,7 +117,6 @@ dialog {
     border-width: 0px;
 
     box-shadow: 0px 2rem 0px calc($lower-height * -1) $color-secondary;
-
 }
 
 dialog::backdrop {
