@@ -62,6 +62,10 @@ dialog {
   border-width: 0px;
 }
 
+dialog::backdrop {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
 .container .scores {
   display: flex;
   flex-direction: row;
@@ -119,10 +123,6 @@ dialog {
   transform: translate(-50%, -50%);
 }
 
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-  border: 1rem solid #B0B0B0;
-}
-
 .cross::after,
 .cross::before,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::after,
@@ -144,6 +144,11 @@ dialog {
 .cross::before,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::before {
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Marks' :hover states */
+.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
+  border: 1rem solid #B0B0B0;
 }
 
 .board.cross-plays .cell:not(.cross):not(.circle):hover::after,

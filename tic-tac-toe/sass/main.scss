@@ -3,6 +3,12 @@
 // TODO: Change marks from position:absolute to flex positioning
 //       Hint: the layout shift was due to box-sizing not being
 //       applied to ::after and ::before
+// TODO: fix vertical resizing
+// TODO: fix zoom resizing
+// TODO: fix text resizing
+// TODO: center modal relatve to board
+// TODO: add hover state with shadow to marks (I TRIED BUT COULN'T)
+
 
 $color-primary: #39B5E0;
 $color-secondary: #A31ACB;
@@ -15,6 +21,9 @@ $color-cross: $color-primary;
 $color-circle: $color-secondary-lighter;
 $color-mark-hover: #B0B0B0;
 
+$lower-height: 5px;
+$raise-height: calc($lower-height * -1);
+
 $cell-size: 100%;
 $mark-size: 70%;
 $mark-border-cross: 1rem solid $color-cross;
@@ -23,14 +32,17 @@ $mark-border-hover: 1rem solid $color-mark-hover;
 
 $border-width: 0.5rem;
 
+
 $corner-elements: 1rem;
-$shadow-button: 0px 5px 0px 0px $color-secondary-darker;
+$shadow-button: 0px $lower-height 0px 0px $color-secondary-darker;
 $shadow-text: 0px 4px 0px $color-secondary;
 $shadow-text-h1: 0px 7px 0px $color-contrast;
+$shadow-marks: $lower-height $lower-height 0px $color-contrast;
 
 $xl-text: 7rem;
 $lg-text: 4rem;
 $md-text: 3rem;
+
 
 // RESET
 
@@ -68,7 +80,7 @@ button {
 }
 
 button:active {
-    transform: translatey(5px);
+    transform: translatey($lower-height);
     box-shadow: none;
 }
 
@@ -79,7 +91,7 @@ button:active {
     background-color: white;
     width: 80vw;
     max-width: 800px;
-    box-shadow: 0px 2rem 0px -5px $color-secondary;
+    box-shadow: 0px 2rem 0px calc($lower-height * -1) $color-secondary;
     
     display: flex;
     flex-direction: column;
@@ -100,6 +112,10 @@ dialog {
     background: $color-secondary-lighter;
     border-radius: $corner-elements;
     border-width: 0px;
+}
+
+dialog::backdrop {
+    background-color: rgb(255, 255, 255, 0.5);
 }
 
 .container {
@@ -175,10 +191,6 @@ dialog {
     transform: translate(-50%, -50%);
 }
 
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-    border: $mark-border-hover;
-}
-
 .cross::after, 
 .cross::before,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::after,
@@ -201,6 +213,12 @@ dialog {
 .cross::before,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::before {
     transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Marks' :hover states */
+
+.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
+    border: $mark-border-hover;
 }
 
 .board.cross-plays .cell:not(.cross):not(.circle):hover::after,
