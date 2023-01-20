@@ -149,6 +149,7 @@ function showWinner(currentMark) {
 }
 
 function resetGame() {
+    crossTurn = true;
     startGame();
 }
 
