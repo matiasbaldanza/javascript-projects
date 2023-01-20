@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&display=swap');
 
-// TODO: Change marks from position:absolute to flex positioning
-//       Hint: the layout shift was due to box-sizing not being
-//       applied to ::after and ::before
 // TODO: fix vertical resizing
 // TODO: fix zoom resizing
 // TODO: fix text resizing
-// TODO: add hover state with shadow to marks (I TRIED BUT COULN'T)
 
 $color-primary: #39B5E0;
 $color-secondary: #A31ACB;
@@ -17,16 +13,12 @@ $color-contrast: #F5EA5A;
 $color-border: $color-secondary;
 $color-cross: $color-primary;
 $color-circle: $color-secondary-lighter;
-$color-mark-hover: #B0B0B0;
-
+$color-mark-hover: #B0B0B088;
 $lower-height: 5px;
 $raise-height: calc($lower-height * -1);
 
 $cell-size: 100%;
 $mark-size: 70%;
-$mark-border-cross: 1rem solid $color-cross;
-$mark-border-circle: 1rem solid $color-circle;
-$mark-border-hover: 1rem solid $color-mark-hover;
 
 $border-width: 0.5rem;
 
@@ -40,12 +32,6 @@ $shadow-marks: $lower-height $lower-height 0px $color-contrast;
 $xl-text: 7rem;
 $lg-text: 4rem;
 $md-text: 3rem;
-
-@mixin mark-position {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
 
 // RESET
 
@@ -159,14 +145,18 @@ dialog::backdrop {
     width: 90%;
     aspect-ratio: 1 / 1;
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 
     & .cell {
         height: $cell-size;
         border: $border-width solid $color-border;
         cursor: pointer;
-        position: relative;
         aspect-ratio: 1/1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
     }
     
@@ -187,47 +177,26 @@ dialog::backdrop {
     }
 }
 
-.circle::after,
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-    content: '';
-    width: $mark-size;
-    height: $mark-size;
-    border-radius: 50%;
-    border: $mark-border-circle;
-
-    @include mark-position;
-    transform: translate(-50%, -50%);
-}
-
-.cross::after, 
 .cross::before,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-    content: '';
-    width: 0;
-    height: calc($mark-size * 1.25);
-    border-left: $mark-border-cross;
-
-    @include mark-position();
+.circle::before { 
+    transition: 50ms ease-out;
 }
 
-.cross::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after {
-    transform: translate(-50%, -50%) rotate(45deg);
+.cross::before, 
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before
+{
+    content: url('assets/cross.svg');
 }
 
-.cross::before,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-    transform: translate(-50%, -50%) rotate(-45deg);
+.circle::before,
+.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
+    content: url('assets/circle.svg');
 }
 
 /* Marks' :hover states */
 
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-    border: $mark-border-hover;
-}
-
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-    border-left: $mark-border-hover;
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before, 
+.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
+    transform:translate($raise-height, $raise-height);
+    filter: drop-shadow(3px 7px 0 $color-mark-hover);
 }

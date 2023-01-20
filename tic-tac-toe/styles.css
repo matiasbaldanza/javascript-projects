@@ -93,14 +93,17 @@ dialog::backdrop {
   width: 90%;
   aspect-ratio: 1/1;
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 }
 .board .cell {
   height: 100%;
   border: 0.5rem solid #A31ACB;
   cursor: pointer;
-  position: relative;
   aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .board :nth-child(-n+3) {
   border-top: none;
@@ -115,50 +118,26 @@ dialog::backdrop {
   border-bottom: none;
 }
 
-.circle::after,
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-  content: "";
-  width: 70%;
-  height: 70%;
-  border-radius: 50%;
-  border: 1rem solid #FF78F0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cross::after,
 .cross::before,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-  content: "";
-  width: 0;
-  height: 87.5%;
-  border-left: 1rem solid #39B5E0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-.cross::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after {
-  transform: translate(-50%, -50%) rotate(45deg);
+.circle::before {
+  transition: 50ms ease-out;
 }
 
 .cross::before,
 .board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  content: url("assets/cross.svg");
+}
+
+.circle::before,
+.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
+  content: url("assets/circle.svg");
 }
 
 /* Marks' :hover states */
-.board.circle-plays .cell:not(.cross):not(.circle):hover::after {
-  border: 1rem solid #B0B0B0;
-}
-
-.board.cross-plays .cell:not(.cross):not(.circle):hover::after,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-  border-left: 1rem solid #B0B0B0;
+.board.cross-plays .cell:not(.cross):not(.circle):hover::before,
+.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
+  transform: translate(-5px, -5px);
+  filter: drop-shadow(3px 7px 0 rgba(176, 176, 176, 0.5333333333));
 }
 
 /*# sourceMappingURL=styles.css.map */
