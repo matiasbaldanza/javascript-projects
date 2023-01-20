@@ -66,11 +66,15 @@ function clearBoardHover() {
 }
 
 function updateScoreOnBoard() {
-    if (crossesScoreElement.textContent !== crossesCumulativeScore) 
+    if (crossesScoreElement.textContent != crossesCumulativeScore) {
         crossesScoreElement.textContent = crossesCumulativeScore;
+        animateElement(crossesScoreElement, 'blink', 500);
+    }
     
-    if (circlesScoreElement.textContent !== circlesCumulativeScore)
+    if (circlesScoreElement.textContent != circlesCumulativeScore) {
         circlesScoreElement.textContent = circlesCumulativeScore;
+        animateElement(circlesScoreElement, 'blink', 500);
+    }
 }
 
 function resetCumulativeScores() {
@@ -153,5 +157,8 @@ function showModal(message) {
     dialogElement.showModal();
 }
 
-
+function animateElement(element, animationClass, timeout) {
+    element.classList.add(animationClass);
+    setTimeout(() => element.classList.remove(animationClass), timeout);
+}
 
