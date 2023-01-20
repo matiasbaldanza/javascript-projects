@@ -76,12 +76,12 @@ function clearBoardHover() {
 }
 
 function updateScoreOnBoard() {
-    if (crossesScoreElement.textContent != crossesCumulativeScore) {
+    if (Number(crossesScoreElement.textContent) !== crossesCumulativeScore) {
         crossesScoreElement.textContent = crossesCumulativeScore;
         animateElement(crossesScoreElement, 'blink', 500);
     }
     
-    if (circlesScoreElement.textContent != circlesCumulativeScore) {
+    if (Number(circlesScoreElement.textContent) !== circlesCumulativeScore) {
         circlesScoreElement.textContent = circlesCumulativeScore;
         animateElement(circlesScoreElement, 'blink', 500);
     }
