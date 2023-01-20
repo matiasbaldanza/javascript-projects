@@ -27,6 +27,16 @@ const winningCombinations = [
 let crossesCumulativeScore = 0;
 let circlesCumulativeScore = 0;
 
+// messages
+const crossName = 'Crosses';
+const circleName = 'Circles';
+const winnerMessage = (currentMark) => {
+    const winnerName = (currentMark === crossClass) ?
+                        crossName :
+                        circleName;
+    return `The ${winnerName} win!`;
+};
+
 startGame();
 
 
@@ -145,7 +155,7 @@ function boardIsFull() {
 }
 
 function showWinner(currentMark) {  
-    showModal(`${currentMark} wins!`);
+    showModal(winnerMessage(currentMark));
 }
 
 function resetGame() {
