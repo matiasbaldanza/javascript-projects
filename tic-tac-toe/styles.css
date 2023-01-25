@@ -42,7 +42,7 @@
 
 body {
   background-color: #FF78F0;
-  padding: 4rem;
+  margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -78,8 +78,7 @@ button:active {
   padding: 2rem;
   border-radius: 2rem;
   background-color: white;
-  width: 80vw;
-  max-width: 800px;
+  width: min(80vw, 750px);
   box-shadow: 0px 2rem 0px -5px #A31ACB;
   display: flex;
   flex-direction: column;
