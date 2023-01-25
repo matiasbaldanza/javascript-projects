@@ -129,13 +129,8 @@ dialog::backdrop {
   grid-template-rows: repeat(3, 1fr);
 }
 .board .cell {
-  height: 100%;
-  border: 0.5rem solid #A31ACB;
+  border: min(0.75vw, 6px) solid #A31ACB;
   cursor: pointer;
-  aspect-ratio: 1/1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .board :nth-child(-n+3) {
   border-top: none;
@@ -152,24 +147,37 @@ dialog::backdrop {
 
 .cross::before,
 .circle::before {
+  content: "";
+  display: block;
+  height: 100%;
+  /* background-image: var(--background-image);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center; */
+  background: no-repeat center/80% var(--background-image);
   transition: 50ms ease-out;
 }
 
-.cross::before,
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before {
-  content: url("assets/cross.svg");
+.cross-plays,
+.cross {
+  --background-image: url("assets/cross.svg");
 }
 
-.circle::before,
-.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
-  content: url("assets/circle.svg");
+.circle-plays,
+.circle {
+  --background-image: url("assets/circle.svg");
 }
 
 /* Marks' :hover states */
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before,
-.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
-  transform: translate(-5px, -5px);
-  filter: drop-shadow(3px 7px 0 rgba(176, 176, 176, 0.5333333333));
+.cell:not(.cross):not(.circle):hover::before {
+  --shadow-offset-x: min(3px, 1vw);
+  --shadow-offset-y: min(7px, 1.2vw);
+  content: "";
+  display: block;
+  height: 100%;
+  background: no-repeat center/80% var(--background-image);
+  transform: translate(-1vw, -1vw);
+  filter: drop-shadow(var(--shadow-offset-x) var(--shadow-offset-y) 0 rgba(176, 176, 176, 0.5333333333));
 }
 
 /*# sourceMappingURL=styles.css.map */
