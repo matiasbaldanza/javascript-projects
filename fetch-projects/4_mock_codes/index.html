@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API error handling test with mock.codes</title>
+
+    <style>
+        body { text-align: center; }
+        section { border: 1px solid gray; border-radius: 10px; padding: 1rem; margin: 2rem; }
+        div { margin: 1rem; }
+    </style>
+
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>API test with error handling with the Simpsons Quotes API</h1>
+    </main>
+    <section>
+        <button get-quote-random-btn>Get a random quote</button>
+        <div status-code-random></div>
+        <p response-data-random></p>
+    </section>
+    <section>
+        <form>
+            <input get-quote-char-input type="text" input-character>
+            <button get-quote-char-btn>Get quote from this character</button>
+            <div status-code-char></div>
+            <p response-data-char></p>
+            <img img-char src="" alt="">
+        </form>
+    </section>
+</body>
+</html>
