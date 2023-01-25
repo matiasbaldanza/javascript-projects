@@ -50,7 +50,8 @@ body {
 }
 
 h1 {
-  font-size: 7rem;
+  font-size: 4rem;
+  font-size: clamp(4rem, 2.3rem + 7.15vw, 7rem);
   color: #39B5E0;
   margin: 0;
   text-shadow: 0px 7px 0px #F5EA5A;
@@ -108,9 +109,11 @@ dialog::backdrop {
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
+  font-size: 2rem;
+  font-size: clamp(2rem, 1.2rem + 2.38vw, 3rem);
 }
-.container .scores .score {
-  font-size: 3rem;
+.container .scores button {
+  font: inherit;
 }
 .container .scores .score-crosses {
   color: #39B5E0;
