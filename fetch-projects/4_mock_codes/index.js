@@ -25,7 +25,7 @@ async function handleClickRandomQuote() {
     showStatus('Querying the API...', statusRandomElement);
     getQuoteRandomButton.disabled = true;
     
-    const responseData = await executeRequest(request, requestOptions);
+    const responseData = await executeRequest(request);
 
     const responseText = `
                             "${responseData[0].quote}" </br></br>
