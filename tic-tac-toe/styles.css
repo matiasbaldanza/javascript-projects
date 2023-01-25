@@ -79,7 +79,7 @@ button:active {
   padding: 2rem;
   border-radius: 2rem;
   background-color: white;
-  width: min(80vw, 750px);
+  width: clamp(280px, 80vw, 750px);
   box-shadow: 0px 2rem 0px -5px #A31ACB;
   display: flex;
   flex-direction: column;
