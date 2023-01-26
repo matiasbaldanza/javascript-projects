@@ -22,7 +22,7 @@ $raise-height: calc($lower-height * -1);
 $cell-size: 100%;
 $mark-size: 70%;
 
-$border-width: 0.5rem;
+$border-width: Min(0.75vw, 6px);
 
 
 $corner-elements: 1rem;
@@ -34,6 +34,7 @@ $shadow-marks: $lower-height $lower-height 0px $color-contrast;
 $xl-text: 7rem;
 $lg-text: 4rem;
 $md-text: 3rem;
+$sm-text: 2rem;
 
 // RESET
 
@@ -48,7 +49,7 @@ $md-text: 3rem;
 
 body {
     background-color: $color-secondary-lighter;
-    padding: 4rem;
+    margin: 0;
     min-height: 100vh;
     
     display: flex;
@@ -57,7 +58,9 @@ body {
 }
 
 h1 {
-    font-size: $xl-text;
+    font-size: $lg-text;
+    // Calculated in https://royalfig.github.io/fluid-typography-calculator/
+    font-size: clamp($lg-text, 2.3rem + 7.15vw, $xl-text);
     color: $color-primary;
     margin: 0;
     text-shadow: $shadow-text-h1;
@@ -85,8 +88,7 @@ button:active {
     padding: 2rem;
     border-radius: 2rem;
     background-color: white;
-    width: 80vw;
-    max-width: 800px;
+    width: clamp(280px, 80vw, 750px);
     box-shadow: 0px 2rem 0px calc($lower-height * -1) $color-secondary;
     
     display: flex;
@@ -125,8 +127,12 @@ dialog::backdrop {
         align-items: center;
         flex-wrap: nowrap;
         
-        & .score {
-            font-size: $md-text;
+        // Calculated in https://royalfig.github.io/fluid-typography-calculator/
+        font-size: $sm-text;
+        font-size: clamp($sm-text, 1.2rem + 2.38vw, $md-text);
+
+        & button {
+          font: inherit;
         }
 
         & .score-crosses {
@@ -151,17 +157,10 @@ dialog::backdrop {
     grid-template-rows: repeat(3, 1fr);
 
     & .cell {
-        height: $cell-size;
-        border: $border-width solid $color-border;
+        border: $border-width solid $color-border;    
         cursor: pointer;
-        aspect-ratio: 1/1;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
     }
-    
+
     & :nth-child(-n+3) {
         border-top: none;
     }
@@ -180,25 +179,38 @@ dialog::backdrop {
 }
 
 .cross::before,
-.circle::before { 
-    transition: 50ms ease-out;
+.circle::before {
+  content: "";
+  display: block;
+  height: 100%;
+  // EXAMPLE TO UNDERSTAND THE SHORTHAND
+  /* background-image: var(--background-image);
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center; */
+  background: no-repeat center / 80% var(--background-image);
+  transition: 50ms ease-out;
 }
 
-.cross::before, 
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before
-{
-    content: url('assets/cross.svg');
+.cross-plays,
+.cross {
+  --background-image: url("assets/cross.svg");
 }
 
-.circle::before,
-.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
-    content: url('assets/circle.svg');
+.circle-plays,
+.circle {
+  --background-image: url("assets/circle.svg");
 }
 
 /* Marks' :hover states */
 
-.board.cross-plays .cell:not(.cross):not(.circle):hover::before, 
-.board.circle-plays .cell:not(.cross):not(.circle):hover::before {
-    transform:translate($raise-height, $raise-height);
-    filter: drop-shadow(3px 7px 0 $color-mark-hover);
+.cell:not(.cross):not(.circle):hover::before {
+  --shadow-offset-x: min(3px, 1vw);
+  --shadow-offset-y: min(7px, 1.2vw);
+  content: "";
+  display: block;
+  height: 100%;
+  background: no-repeat center / 80% var(--background-image);
+  transform: translate(-1vw, -1vw);
+  filter: drop-shadow(var(--shadow-offset-x) var(--shadow-offset-y) 0 $color-mark-hover);
 }
