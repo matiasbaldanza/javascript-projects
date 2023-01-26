@@ -9,10 +9,9 @@ const statusCharacterElement = document.querySelector('[status-code-char]');
 const responseDataCharacterElement = document.querySelector('[response-data-char]')
 const imgCharacterElement = document.querySelector('[img-char]')
 
-
-const API = 'https://thesimpsonsquoteapi.glitch.me/quotes';
-const request = `${API}/`;
-let requestOptions = '';
+// API request
+let requestURLRandom = new URL('https://thesimpsonsquoteapi.glitch.me/quotes');
+let requestURLCharacter = new URL('https://thesimpsonsquoteapi.glitch.me/quotes');
 
 // event handlers
 getQuoteRandomButton.addEventListener('click', handleClickRandomQuote );
@@ -25,7 +24,7 @@ async function handleClickRandomQuote() {
     showStatus('Querying the API...', statusRandomElement);
     getQuoteRandomButton.disabled = true;
     
-    const responseData = await executeRequest(request);
+    const responseData = await executeRequest(requestURLRandom);
 
     const responseText = `
                             "${responseData[0].quote}" </br></br>
@@ -41,10 +40,8 @@ async function handleClickCharacterQuote() {
     showStatus('Querying the API...', statusCharacterElement);
     getQuoteCharacterButton.disabled = true;
     
-    console.log(requestOptions)
-    requestOptions = `character=${getQuoteCharacterInput.value}`;
-    console.log(requestOptions)
-    const responseData = await executeRequest(`${request}?${requestOptions}`);
+    requestURLCharacter.searchParams.set('character', getQuoteCharacterInput.value);     // <-- TODO: NOT SANITIZED!!!
+    const responseData = await executeRequest(requestURLCharacter);
 
     const responseText = `
                             "${responseData[0].quote}" </br></br>
@@ -62,11 +59,11 @@ async function handleClickCharacterQuote() {
     showStatus(' ', statusCharacterElement);
 }
 
-async function executeRequest(request, requestOptions) {
+async function executeRequest(requestURL) {
     let responseData = '';
     
     try {
-        const responsePromise = await fetch(request, requestOptions);
+        const responsePromise = await fetch(requestURL);
 
         if (!responsePromise.ok) {
             throw new Error('Bad reponse. Status code: ', responsePromise.status);
